@@ -50,7 +50,7 @@ class RecintosZoo {
         
         this.lista_recintosViaveis =
         {
-            recintosViaveis: this.recintosViaveis;
+            recintosViaveis: this.recintosViaveis
         };
     }
 
@@ -72,12 +72,8 @@ class RecintosZoo {
                 return console.log(this.animal_invalido);
         }
         
-        for(let i = 0; i<this.recinto.length; i++){
-            for(let key in this.recinto){
-                if(key==animal){
-                    this.recintosViaveis.push(this.recinto[i]);
-                }
-            }
+        for(let recinto of this.recinto){
+            console.log(recinto.especies);
         }
     }
 
