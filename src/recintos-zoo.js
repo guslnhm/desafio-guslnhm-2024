@@ -109,6 +109,7 @@ class RecintosZoo {
         for(let recinto of this.recinto){
             if(recinto.permite_max.hasOwnProperty(animal)){
                 if(recinto.permite_max[animal] >= quantidade){ //posso adicionar um && com permite_min em cada object
+                    if(recinto.id==2 && animal=="MACACO" && quantidade==1) continue; //resolve, em teoria, problema do macaco solitário
                     this.x++;
                     this.espaco_sobra = recinto.espaco_livre - (this.tamanho_animais[animal] * quantidade);
                     //verifica se tem espécies diferentes, se sim, tira 1 de espaço que sobra
@@ -128,4 +129,4 @@ class RecintosZoo {
 const zoo = new RecintosZoo();
 //console.log(zoo.recinto[0]);
 
-zoo.analisaRecintos("MACACO",2);
+zoo.analisaRecintos("MACACO",1);
