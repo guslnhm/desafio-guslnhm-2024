@@ -102,6 +102,8 @@ class RecintosZoo {
 
     analisaRecintos(animal, quantidade) {
         
+        if(quantidade==0) return console.log(this.quantidade_invalida);
+        
         if(!this.animaisValidos.has(animal)){
             return console.log(this.animal_invalido);
         }
@@ -129,4 +131,4 @@ class RecintosZoo {
 const zoo = new RecintosZoo();
 //console.log(zoo.recinto[0]);
 
-zoo.analisaRecintos("MACACO",1);
+zoo.analisaRecintos("MACACO",2);
