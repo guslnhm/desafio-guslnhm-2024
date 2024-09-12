@@ -25,7 +25,6 @@ class RecintosZoo {
                 {
                     'MACACO': 5
                 }
-                /*TEM QUE COLOCAR NO MÍNIMO 2 MACACOS*/
             },
             {
                 id: 3,
@@ -97,38 +96,29 @@ class RecintosZoo {
         
         this.espaco_sobra = 0;
         
-        /*juntar tamanho_animais e animaisValidos, e checar se o animal é válido percorrendo as keys desse object resultante*/
     }
 
     analisaRecintos(animal, quantidade) {
         
-        if(quantidade==0) return console.log(this.quantidade_invalida);
+        if(quantidade<=0) return this.quantidade_invalida;
         
-        if(!this.animaisValidos.has(animal)){
-            return console.log(this.animal_invalido);
-        }
+        if(!this.animaisValidos.has(animal)) return this.animal_invalido;
         
         for(let recinto of this.recinto){
             if(recinto.permite_max.hasOwnProperty(animal)){
-                if(recinto.permite_max[animal] >= quantidade){ //posso adicionar um && com permite_min em cada object
-                    if(recinto.id==2 && animal=="MACACO" && quantidade==1) continue; //resolve, em teoria, problema do macaco solitário
+                if(recinto.permite_max[animal] >= quantidade){
+                    if(recinto.id==2 && animal=="MACACO" && quantidade==1) continue;
                     this.x++;
                     this.espaco_sobra = recinto.espaco_livre - (this.tamanho_animais[animal] * quantidade);
-                    //verifica se tem espécies diferentes, se sim, tira 1 de espaço que sobra
                     if(!recinto.especies.hasOwnProperty(animal) && Object.keys(recinto.especies)!=0) this.espaco_sobra--;
                     this.recintosViaveis.push(`Recinto ${recinto.id} (espaço livre: ${this.espaco_sobra} total: ${recinto.tamanho_total})`);
                 }
             }
         }
-        if(this.x==0) return console.log(this.sem_recinto_viavel);
-        console.log(this.lista_recintosViaveis);
+        if(this.x==0) return this.sem_recinto_viavel;
+        return this.lista_recintosViaveis;
     }
 
 }
 
 export { RecintosZoo as RecintosZoo };
-
-const zoo = new RecintosZoo();
-//console.log(zoo.recinto[0]);
-
-zoo.analisaRecintos("MACACO",2);
