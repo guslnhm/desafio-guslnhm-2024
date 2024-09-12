@@ -126,7 +126,7 @@ class RecintosZoo {
 
 }
 
-//export { RecintosZoo as RecintosZoo };
+export { RecintosZoo as RecintosZoo };
 
 const zoo = new RecintosZoo();
 //console.log(zoo.recinto[0]);
